@@ -1,6 +1,6 @@
 from selenium import webdriver
+import json
 from time import sleep
-import panda as pd
 
 driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
@@ -14,8 +14,6 @@ ids = driver.find_elements_by_xpath("//*[contains(@id, 'Comment_')]")
 
 for i in ids:
     comment_ids.append(i.get_attribute('id'))
-
-print(comment_ids)
 
 for comment in comment_ids:
     # extract user id
@@ -42,5 +40,5 @@ for comment in comment_ids:
 sleep(10)
 driver.quit()
 
-print(all_comments)
-# print(userid, date, comment_text, sep='\n')
+with open('comments.json', 'w') as f:
+    json.dump(all_comments, f)
