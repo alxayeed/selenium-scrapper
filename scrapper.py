@@ -41,4 +41,4 @@ sleep(10)
 driver.quit()
 
 with open('comments.json', 'w') as f:
-    json.dump(all_comments, f)
+    f.write(json.dumps(all_comments, indent=4))
